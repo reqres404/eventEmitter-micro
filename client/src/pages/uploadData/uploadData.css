@@ -1,0 +1,38 @@
+.upload-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-form {
+  display: flex;
+  background-color: #272f39;
+  color: #ffa733;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  width: 70%;
+  border-radius: 15px;
+}
+
+.upload-label {
+  color: #272f39;
+  background-color: #ffa733;
+  border: none;
+  padding: 10px;
+  border-radius: 15px;
+}
+
+.upload-button {
+  color: #272f39;
+  background-color: #ffa733;
+  border: none;
+  padding: 10px;
+  border-radius: 15px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+.upload-message{
+  padding-left: 12px;
+  color: rgba(150, 249, 150, 0.573);
+}

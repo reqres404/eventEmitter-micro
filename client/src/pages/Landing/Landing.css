@@ -1,0 +1,13 @@
+.landing-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.landing-heading{   
+        font-family: 'Redressed', cursive; color:#ffffff;
+        padding: 0%;
+        margin: 0;
+        text-align: center;
+        font-size: 32px;
+}

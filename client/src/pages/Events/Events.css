@@ -1,0 +1,241 @@
+.events-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+   /* Update the background color of the container */
+}
+
+.select-duration,
+.select-event {
+  margin-bottom: 20px;
+}
+
+.select-duration select,
+.select-event select {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+.data-card {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start; /* Align cards to the left */
+  gap: 20px;
+}
+
+.card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex: 1 1 30%; /* Each card occupies 30% of the available space */
+  margin-bottom: 20px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+/* Optional: Adjust the card width on larger screens */
+@media (min-width: 768px) {
+  .card {
+    flex: 1 1 calc(33.33% - 20px); /* Each card occupies 33.33% of the available space */
+  }
+}
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card.expanded {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(80% - 40px);
+  max-width: 800px;
+  z-index: 999;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow-y: auto;
+}
+
+.card.expanded .card-content {
+  padding: 40px;
+}
+
+.employee-id {
+  color: #3498db;
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.employee-name {
+  color: #2ecc71;
+  font-size: 20px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+.employee-email {
+  color: #9b59b6;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.employee-dob {
+  padding: 10px;
+  color: #34495e;
+  font-size: 18px;
+  margin-bottom: 4px;
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflowing text */
+  text-overflow: ellipsis; /* Display ellipsis (...) for truncated text */
+}
+
+.employee-joining{
+  padding: 5px;
+  color: #34495e;
+  font-size: 16px;
+  margin-bottom: 0;
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflowing text */
+  text-overflow: ellipsis; /* Display ellipsis (...) for truncated text */
+}
+.employee-years-of-service{
+  color: #34495e;
+  font-size: 14px;
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflowing text */
+  text-overflow: ellipsis; /* Display ellipsis (...) for truncated text */
+
+}
+
+.employee-favourite-colour,
+.employee-favourite-food {
+  color: #e67e22;
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.employee-name:last-child {
+  margin-bottom: 0;
+}
+
+.error-message {
+  color: red;
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.products {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.products a {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 0 10px;
+  color: white;
+  background-color: #4caf50;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.products a:hover {
+  background-color: #45a049;
+}
+
+.products a:first-child {
+  margin-left: 0;
+}
+
+.products a:last-child {
+  margin-right: 0;
+}
+.get-gifts-button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f44336;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.get-gifts-button:hover {
+  background-color: #d32f2f;
+}
+
+.get-gifts-button:focus {
+  outline: none;
+}
+
+.get-gifts-button:active {
+  transform: translateY(2px);
+}
+
+
+.resto-search{
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.resto-search a {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 0 10px;
+  color: white;
+  background-color: #4caf50;
+  border-radius: 5px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.resto-search a:hover {
+  background-color: #45a049;
+}
+
+.resto-search a:first-child {
+  margin-left: 0;
+}
+
+.resto-search a:last-child {
+  margin-right: 0;
+}
+
+/* Typographical Styles */
+h1 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-size: 20px;
+  color: #555;
+  margin-bottom: 12px;
+}
+
+p {
+  font-size: 16px;
+  color: #777;
+  line-height: 1.4;
+  margin-bottom: 8px;
+}

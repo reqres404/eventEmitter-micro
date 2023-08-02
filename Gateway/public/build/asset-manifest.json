@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/static/css/main.29eddc6b.css",
+    "main.js": "/static/js/main.c01b6a0c.js",
+    "static/media/caketrackLogo.png": "/static/media/caketrackLogo.e6d2b360cb265ca037e4.png",
+    "index.html": "/index.html",
+    "main.29eddc6b.css.map": "/static/css/main.29eddc6b.css.map",
+    "main.c01b6a0c.js.map": "/static/js/main.c01b6a0c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.29eddc6b.css",
+    "static/js/main.c01b6a0c.js"
+  ]
+}

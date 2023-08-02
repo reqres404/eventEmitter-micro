@@ -1,0 +1,62 @@
+version: '3.9'
+
+services:
+
+  client:
+    build:
+      context: ./client
+    ports:
+      - "80:80"
+    networks:
+      - my_network
+    container_name: client  
+  
+  events:
+    build:
+      context: ./Events
+    ports:
+      - "4001:4001"
+    networks:
+      - my_network
+    container_name: events
+
+  scrape:
+    build:
+      context: ./Scrape
+    ports:
+      - "4002:4002"
+    networks:
+      - my_network
+    container_name: scrape
+  user:
+    build:
+      context: ./User
+    ports:
+      - "4003:4003"
+    networks:
+      - my_network
+    container_name: user
+  upload:
+    build:
+      context: ./Upload
+    ports:
+      - "4004:4004"
+    networks:
+      - my_network
+    container_name: upload
+
+networks:
+  my_network:
+    driver: bridge
+
+  # nginx:
+  #   image: nginx:latest
+  #   container_name: my_nginx
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf:ro  
+  #     - ./client/build:/usr/share/nginx/html:ro  
+  #   ports:
+  #     - "80:80"  # Expose Nginx on port 80 (HTTP)
+  #   networks:
+  #     - my_network
+
