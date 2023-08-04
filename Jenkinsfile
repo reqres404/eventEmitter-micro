@@ -1,4 +1,4 @@
-pipeline{
+pipeline {
     agent any
 
     environment {
@@ -55,7 +55,7 @@ pipeline{
                     def awsSecretAccessKey = awsCredentials.split(':')[1]
 
                     // Configure kubectl with AWS IAM credentials
-                    sh "aws eks update-kubeconfig --region us-east-1 --name demo-eks --role-arn arn:aws:iam::501697547576:role/arn:aws:iam::501697547576:role/eksctl-demo-eks-cluster-ServiceRole-1AWGP09YOR6YY --access-key \${awsAccessKeyId} --secret-key \${awsSecretAccessKey}"
+                    sh "aws eks update-kubeconfig --region us-east-1 --name demo-eks --role-arn 'arn:aws:iam::501697547576:role/arn:aws:iam::501697547576:role/eksctl-demo-eks-cluster-ServiceRole-1AWGP09YOR6YY' --access-key \${awsAccessKeyId} --secret-key \${awsSecretAccessKey}"
 
                     // Apply Kubernetes manifests
                     sh "kubectl apply -f deployment.yaml"  // Assuming you have the deployment manifests in a folder called 'kubernetes'
