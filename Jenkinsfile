@@ -2,7 +2,6 @@ pipeline {
     agent any
 
     environment {
-        DB_URL = credentials('DB_URL') 
         registry = "501697547576.dkr.ecr.us-east-1.amazonaws.com/caketrack"       
     }
 
