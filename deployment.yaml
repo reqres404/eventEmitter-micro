@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: client-build
-        image: #yet to be decided
+        image: adittyapatil1818/caketrack-client:latest
         ports:
         - containerPort: 3000
 
@@ -33,7 +33,8 @@ spec:
     - protocol: TCP
       port: 80
       targetPort: 80
-  type: LoadBalancer
+      nodePort: 30001
+  type: NodePort
 
 ---
 
@@ -53,7 +54,7 @@ spec:
     spec:
       containers:
       - name: events
-        image: #Yet to be decided
+        image: adittyapatil1818/caketrack-events:latest
         ports:
         - containerPort: 4001
 
@@ -89,7 +90,7 @@ spec:
     spec:
       containers:
       - name: scrape
-        image: #yet to be pushed
+        image: adittyapatil1818/caketrack-scrape:latest
         ports:
         - containerPort: 4002
 
@@ -125,7 +126,7 @@ spec:
     spec:
       containers:
       - name: user
-        image: #yet to be pushed
+        image: adittyapatil1818/caketrack-user:latest
         ports:
         - containerPort: 4003
 
@@ -161,7 +162,7 @@ spec:
     spec:
       containers:
       - name: user
-        image: #yet to be pushed
+        image: adittyapatil1818/caketrack-upload:latest
         ports:
         - containerPort: 4004
 

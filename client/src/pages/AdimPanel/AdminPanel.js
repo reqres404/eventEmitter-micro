@@ -11,7 +11,7 @@ const AdminPanel = () => {
 
   const getUsers = async () => {
     try {
-      const response = await axios.get("http://localhost/api/user/");
+      const response = await axios.get("/api/user/");
       setUsers(response.data);
     } catch (error) {
       console.error(error);
@@ -20,7 +20,7 @@ const AdminPanel = () => {
 
   const handleDelete = async (userId) => {
     try {
-      await axios.delete(`http://localhost/api/user/${userId}`);
+      await axios.delete(`/api/user/${userId}`);
       getUsers(); // Refresh the user list after deletion
     } catch (error) {
       console.error(error);
@@ -29,7 +29,7 @@ const AdminPanel = () => {
 
   const makeAdmin = async (userId) => {
     try {
-      await axios.put(`http://localhost/api/user/${userId}`);
+      await axios.put(`/api/user/${userId}`);
       getUsers(); // Refresh the user list after making admin
     } catch (error) {
       console.error(error);
@@ -45,7 +45,7 @@ const AdminPanel = () => {
           return;
         }
 
-        const response = await axios.get(`http://localhost/api/user/${userId}`);
+        const response = await axios.get(`/api/user/${userId}`);
         setAdmin(response.data.userRole);
       } catch (error) {
         console.error(error);

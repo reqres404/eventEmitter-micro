@@ -18,7 +18,7 @@ const UploadData = () => {
       const formData = new FormData();
       formData.append('uploadfile', file);
 
-      await axios.post('http://localhost/api/upload/', formData);
+      await axios.post('/api/upload/', formData);
 
       console.log('File imported successfully.');
       setFile(null)

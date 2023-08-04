@@ -29,7 +29,7 @@ const Events = () => {
 
       try {
         const response = await axios.get(
-          `http://localhost/api/events/${selection.event}/${selection.duration}`
+          `/api/events/${selection.event}/${selection.duration}`
         );
         setData(response.data);
         setError(null); // Clear any previous errors
@@ -48,7 +48,7 @@ const Events = () => {
     const fetchGifts = async () => {
       try {
         setIsLoadingGifts(true); // Start loading animation
-        const response = await axios.get("http://localhost/api/scrape/", {
+        const response = await axios.get("/api/scrape/", {
           params: {
             color: favColor,
             gender: gender,

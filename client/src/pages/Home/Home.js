@@ -18,7 +18,7 @@ const Home = () => {
           return;
         }
 
-        const response = await axios.get(`http://localhost/api/user/${userId}`);
+        const response = await axios.get(`/api/user/${userId}`);
         setAdmin(response.data.userRole);
       } catch (error) {
         console.error(error);
