@@ -15,7 +15,7 @@ pipeline {
         stage('Build Images') {
             steps {
                 dir('client') {
-                    sh 'docker build -t 501697547576.dkr.ecr.us-east-1.amazonaws.com/caketrack:server .'
+                    sh 'docker build -t 501697547576.dkr.ecr.us-east-1.amazonaws.com/caketrack:client .'
                 }
                 dir('Events') {
                     sh 'docker build -t 501697547576.dkr.ecr.us-east-1.amazonaws.com/caketrack:events .'
@@ -35,7 +35,7 @@ pipeline {
         stage('Push Images to ECR') {
             steps {
                 script {
-                    sh "aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 501697547576.dkr.ecr.us-east-1.amazonaws.com"
+                    sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 501697547576.dkr.ecr.us-east-1.amazonaws.com'
                     sh 'docker push 501697547576.dkr.ecr.us-east-1.amazonaws.com/caketrack:client'
                     sh 'docker push 501697547576.dkr.ecr.us-east-1.amazonaws.com/caketrack:events'
                     sh 'docker push 501697547576.dkr.ecr.us-east-1.amazonaws.com/caketrack:scrape'
@@ -49,15 +49,14 @@ pipeline {
             steps {
                 script {
                     // Retrieve AWS IAM credentials from Jenkins credentials
-                    def awsCredentials = credentials('EKS_CREDENTIALS')
-                    def awsAccessKeyId = awsCredentials.split(':')[0]
-                    def awsSecretAccessKey = awsCredentials.split(':')[1]
-
                     // Configure kubectl with AWS IAM credentials
-                    sh "aws eks update-kubeconfig --region us-east-1 --name demo-eks --role-arn 'arn:aws:iam::501697547576:role/arn:aws:iam::501697547576:role/eksctl-demo-eks-cluster-ServiceRole-1AWGP09YOR6YY' --access-key \${awsAccessKeyId} --secret-key \${awsSecretAccessKey}"
+                    withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubeconfig', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+                    // some block
+                    }
 
                     // Apply Kubernetes manifests
-                    sh "kubectl apply -f deployment.yaml"  // Assuming you have the deployment manifests in a folder called 'kubernetes'
+                    sh "kubectl apply -f deployment.yaml" 
+					sh "kubectl rollout restart deployment client-build-deployment"
                 }
             }
         }
