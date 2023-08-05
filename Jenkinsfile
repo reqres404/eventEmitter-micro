@@ -54,7 +54,7 @@ pipeline {
                     }
 
                     // Apply Kubernetes manifests
-                    sh "kubectl apply -f deployment.yaml --context caketrack-eks" 
+                    sh "kubectl apply -f deployment.yaml --context caketrack-eks.us-east-1.eksctl.io" 
 					sh "kubectl rollout restart deployment client-build-deployment"
                 }
             }
