@@ -48,14 +48,13 @@ pipeline {
         stage('Deploy to EKS') {
             steps {
                 script {
-                    // Retrieve AWS IAM credentials from Jenkins credentials
-                    // Configure kubectl with AWS IAM credentials
+
                     withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubeconfig', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
                     // some block
                     }
 
                     // Apply Kubernetes manifests
-                    sh "kubectl apply -f deployment.yaml" 
+                    sh "kubectl apply -f deployment.yaml --context caketrack-eks" 
 					sh "kubectl rollout restart deployment client-build-deployment"
                 }
             }
