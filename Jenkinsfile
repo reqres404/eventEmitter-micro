@@ -58,7 +58,7 @@ pipeline {
 
                 	// Apply Kubernetes manifests
 					sh "kubectl delete deployment frontend-deployment authservice-deployment admin-deployment event-deployment || true"
-                	sh "kubectl apply -f microservices.yaml"
+                	sh "kubectl apply -f deployment.yaml"
 					// sh "kubectl rollout restart deployment frontend-deployment authservice-deployment admin-deployment event-deployment"
             	}
         	}
