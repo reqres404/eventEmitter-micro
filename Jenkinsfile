@@ -45,23 +45,23 @@ pipeline {
             }
         }
 
-        stage('Deploy to EKS') {
-            steps {
-                script {
+    	stage('Deploy to EKS') {
+        	steps {
+            	script {
+                	// Retrieve AKS credentials
+                    // sh "az --version"
+                    // sh "az login"
+					withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubeconfig', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+    				// some block
+						}
+                	// sh "az aks get-credentials --resource-group Usecase2 --name kubecluster --overwrite-existing"
 
-withKubeConfig(
-                credentialsId: 'kubeconfig',  // Jenkins credentials ID for kubeconfig
-                serverUrl: 'https://4C18F94466BAA5CB0A9DEC874A2123D6.sk1.us-east-2.eks.amazonaws.com',
-                clusterName: 'demo-eks.us-east-2.eksctl.io',
-                contextName: 'i-08b607060ae4f81c0@demo-eks.us-east-2.eksctl.io',
-                
-            ) {
-                // Your Kubernetes deployment, pod creation, or other Kubernetes operations here
-                sh "kubectl apply -f deployment.yaml"
-                sh "kubectl rollout restart deployment client-build-deployment"
-            }
-                }
-            }
-        }
+                	// Apply Kubernetes manifests
+					sh "kubectl delete deployment frontend-deployment authservice-deployment admin-deployment event-deployment"
+                	sh "kubectl apply -f microservices.yaml"
+					// sh "kubectl rollout restart deployment frontend-deployment authservice-deployment admin-deployment event-deployment"
+            	}
+        	}
+    	}
     }
 }
