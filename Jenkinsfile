@@ -57,7 +57,7 @@ pipeline {
                 	// sh "az aks get-credentials --resource-group Usecase2 --name kubecluster --overwrite-existing"
 
                 	// Apply Kubernetes manifests
-					sh "kubectl delete deployment frontend-deployment authservice-deployment admin-deployment event-deployment"
+					sh "kubectl delete deployment frontend-deployment authservice-deployment admin-deployment event-deployment || true"
                 	sh "kubectl apply -f microservices.yaml"
 					// sh "kubectl rollout restart deployment frontend-deployment authservice-deployment admin-deployment event-deployment"
             	}
