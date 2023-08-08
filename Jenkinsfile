@@ -15,19 +15,19 @@ pipeline {
         stage('Build Images') {
             steps {
                 dir('client') {
-                    sh 'docker build -t 501697547576.dkr.ecr.us-east-1.amazonaws.com/caketrack:client .'
+                    sh 'docker build -t 501697547576.dkr.ecr.us-east-2.amazonaws.com/caketrack:client .'
                 }
                 dir('Events') {
-                    sh 'docker build -t 501697547576.dkr.ecr.us-east-1.amazonaws.com/caketrack:events .'
+                    sh 'docker build -t 501697547576.dkr.ecr.us-east-2.amazonaws.com/caketrack:events .'
                 }
                 dir('Scrape') {
-                    sh 'docker build -t 501697547576.dkr.ecr.us-east-1.amazonaws.com/caketrack:scrape .'
+                    sh 'docker build -t 501697547576.dkr.ecr.us-east-2.amazonaws.com/caketrack:scrape .'
                 }
                 dir('Upload') {
-                    sh 'docker build -t 501697547576.dkr.ecr.us-east-1.amazonaws.com/caketrack:upload .'
+                    sh 'docker build -t 501697547576.dkr.ecr.us-east-2.amazonaws.com/caketrack:upload .'
                 }
                 dir('User') {
-                    sh 'docker build -t 501697547576.dkr.ecr.us-east-1.amazonaws.com/caketrack:user .'
+                    sh 'docker build -t 501697547576.dkr.ecr.us-east-2.amazonaws.com/caketrack:user .'
                 }
             }
         }
@@ -35,12 +35,12 @@ pipeline {
         stage('Push Images to ECR') {
             steps {
                 script {
-                    sh 'aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 501697547576.dkr.ecr.us-east-1.amazonaws.com'
-                    sh 'docker push 501697547576.dkr.ecr.us-east-1.amazonaws.com/caketrack:client'
-                    sh 'docker push 501697547576.dkr.ecr.us-east-1.amazonaws.com/caketrack:events'
-                    sh 'docker push 501697547576.dkr.ecr.us-east-1.amazonaws.com/caketrack:scrape'
-                    sh 'docker push 501697547576.dkr.ecr.us-east-1.amazonaws.com/caketrack:upload'
-                    sh 'docker push 501697547576.dkr.ecr.us-east-1.amazonaws.com/caketrack:user'
+                    sh 'aws ecr get-login-password --region us-east-2 | docker login --username AWS --password-stdin 501697547576.dkr.ecr.us-east-2.amazonaws.com'
+                    sh 'docker push 501697547576.dkr.ecr.us-east-2.amazonaws.com/caketrack:client'
+                    sh 'docker push 501697547576.dkr.ecr.us-east-2.amazonaws.com/caketrack:events'
+                    sh 'docker push 501697547576.dkr.ecr.us-east-2.amazonaws.com/caketrack:scrape'
+                    sh 'docker push 501697547576.dkr.ecr.us-east-2.amazonaws.com/caketrack:upload'
+                    sh 'docker push 501697547576.dkr.ecr.us-east-2.amazonaws.com/caketrack:user'
                 }
             }
         }
