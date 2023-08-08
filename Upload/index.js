@@ -1,3 +1,17 @@
+var apm = require('elastic-apm-node').start({
+
+  serviceName: 'Upload',
+
+
+  secretToken: 'ZDiacOeDt8kdC1Uh3I',
+
+
+  serverUrl: 'https://2cb0819007ae40ce958e6cc4474ec415.apm.us-central1.gcp.cloud.es.io:443',
+
+
+  environment: 'my-environment'
+
+})
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors');

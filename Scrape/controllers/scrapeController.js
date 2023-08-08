@@ -24,7 +24,7 @@ const getGift = async (req, res) => {
         url2: productsArray[productsArray.length-2].url,
         url3: productsArray[productsArray.length-1].url,
       };
-
+      
       return res.status(200).json(urls);
     }
 

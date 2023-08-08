@@ -7,7 +7,6 @@ import Login from './pages/AuthTest/Login/Login'
 import Register from './pages/AuthTest/Register/Register'
 import AdminPanel from './pages/AdimPanel/AdminPanel';
 
-
 function App() {
   return (
     <div className="App">
