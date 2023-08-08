@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: client-build
-        image: 501697547576.dkr.ecr.us-east-1.amazonaws.com/caketrack:client
+        image: 501697547576.dkr.ecr.us-east-2.amazonaws.com/caketrack:client
         ports:
         - containerPort: 3000
 
@@ -53,7 +53,7 @@ spec:
     spec:
       containers:
       - name: events
-        image: 501697547576.dkr.ecr.us-east-1.amazonaws.com/caketrack:events
+        image: docker push 501697547576.dkr.ecr.us-east-2.amazonaws.com/caketrack:events
         ports:
         - containerPort: 4001
 
@@ -89,7 +89,7 @@ spec:
     spec:
       containers:
       - name: scrape
-        image: 501697547576.dkr.ecr.us-east-1.amazonaws.com/caketrack:scrape
+        image: docker push 501697547576.dkr.ecr.us-east-2.amazonaws.com/caketrack:scrape
         ports:
         - containerPort: 4002
 
@@ -125,7 +125,7 @@ spec:
     spec:
       containers:
       - name: user
-        image: 501697547576.dkr.ecr.us-east-1.amazonaws.com/caketrack:user
+        image: docker push 501697547576.dkr.ecr.us-east-2.amazonaws.com/caketrack:user
         ports:
         - containerPort: 4003
 
@@ -161,7 +161,7 @@ spec:
     spec:
       containers:
       - name: user
-        image: 501697547576.dkr.ecr.us-east-1.amazonaws.com/caketrack:upload
+        image: docker push 501697547576.dkr.ecr.us-east-2.amazonaws.com/caketrack:upload
         ports:
         - containerPort: 4004
 
