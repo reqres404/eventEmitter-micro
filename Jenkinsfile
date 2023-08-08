@@ -49,9 +49,9 @@ pipeline {
             steps {
                 script {
 
-                withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubeconfig', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
-                // some block
-                }
+            withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubeconfig', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
+        // some block
+        }
 
                     // Apply Kubernetes manifests
                     sh "kubectl apply -f deployment.yaml" 
