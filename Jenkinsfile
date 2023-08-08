@@ -49,13 +49,17 @@ pipeline {
             steps {
                 script {
 
-            withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'kubeconfig', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
-        // some block
-        }
-
-                    // Apply Kubernetes manifests
-                    sh "kubectl apply -f deployment.yaml" 
-					sh "kubectl rollout restart deployment client-build-deployment"
+withKubeConfig(
+                credentialsId: 'kubeconfig',  // Jenkins credentials ID for kubeconfig
+                serverUrl: 'https://4C18F94466BAA5CB0A9DEC874A2123D6.sk1.us-east-2.eks.amazonaws.com',
+                clusterName: 'demo-eks.us-east-2.eksctl.io',
+                contextName: 'i-08b607060ae4f81c0@demo-eks.us-east-2.eksctl.io',
+                
+            ) {
+                // Your Kubernetes deployment, pod creation, or other Kubernetes operations here
+                sh "kubectl apply -f deployment.yaml"
+                sh "kubectl rollout restart deployment client-build-deployment"
+            }
                 }
             }
         }
