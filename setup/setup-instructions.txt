@@ -1,0 +1,31 @@
+1.  Provision EC2 t2.medium with 
+    IAM policy of admin access and 16gb storage
+    also open port 8080 for jenkins
+
+2.  In t2.medium first install jenkins as given in setup-command
+
+3.  Now Install all command line utilities ie
+    aws-cli, kubectl, eksctl
+4.  Now Switch to jenkins user 
+
+5.  Create ECR repo and Install docker in ubuntu  
+
+6.  Create EKS Cluster
+
+7.  Now go on the jenkins UI to download plugins
+    the required plugins are given below
+    -Docker 
+    -Docker Pipeline
+    -kubernetes CLI
+
+8.  get kubeconfig and add it to 
+    text folder and add this as secretfile
+    in jenkins
+9.  Cross-check jenkins file and deployment.yaml
+
+10. Build the Pipeline
+
+---MONITORING---
+
+check elastic for transaction 
+install container insights

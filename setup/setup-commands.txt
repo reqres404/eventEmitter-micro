@@ -1,0 +1,91 @@
+(1)	Jenkins <----->
+		sudo hostnamectl set-hostname Jenkins
+	 	sudo apt update
+		sudo apt install default-jdk -y
+		java -version
+
+	curl -fsSL https://pkg.jenkins.io/debian/jenkins.io-2023.key | sudo tee \
+  /usr/share/keyrings/jenkins-keyring.asc > /dev/null
+
+	echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \
+  https://pkg.jenkins.io/debian binary/ | sudo tee \
+  /etc/apt/sources.list.d/jenkins.list > /dev/null
+	
+		sudo apt update
+		sudo apt install jenkins -y
+
+(2)	AWS CLI <----->
+		curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" 
+
+		sudo apt install unzip
+
+		sudo unzip awscliv2.zip  
+
+		sudo ./aws/install
+		aws --version
+
+(3)	EKCTL <----->
+		curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+
+		sudo mv /tmp/eksctl /usr/local/bin
+		eksctl version
+
+(4) kubectl <----->
+	curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+	sudo touch /etc/apt/sources.list.d/kubernetes.list 	
+	echo "deb http://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee -a /etc/apt/sources.list.d/kubernetes.list
+	sudo apt-get update
+	sudo apt-get install -y kubectl
+	kubectl version --short --client
+
+(5)	Docker <------>
+		sudo apt install docker.io -y
+		sudo usermod -aG docker $USER	
+		sudo usermod -a -G docker jenkins
+		sudo service jenkins restart
+		sudo systemctl daemon-reload
+		sudo service docker stop
+		sudo service docker start
+
+(6.1)	Swith to jenkins user
+	sudo su - jenkins
+
+(6.2)	Create EKS Cluster
+	//Creating Cluster:
+	sudo su - jenkins
+	eksctl create cluster --name caketrack-eks --region us-east-2 --nodegroup-name caketrack-nodes --node-type t3.small --managed --nodes 2
+	eksctl get cluster --name caketrack-eks --region us-east-2
+	
+	kubectl config view --minify --flatten
+	kubectl config use-context <context-name>
+    cat /var/lib/jenkins/.kube/config 
+
+aws eks update-kubeconfig --name my-eks-cluster
+
+
+
+
+
+
+---MONITORING-CMDS---
+//Cloudwatch Container insights
+	Go to nodes and and cloudwatch logs access policy to their IAM role
+    ClusterName=<my-cluster-name>
+    RegionName=<my-cluster-region>
+    FluentBitHttpPort='2020'
+    FluentBitReadFromHead='Off'
+    [[ ${FluentBitReadFromHead} = 'On' ]] && FluentBitReadFromTail='Off'|| FluentBitReadFromTail='On'
+    [[ -z ${FluentBitHttpPort} ]] && FluentBitHttpServer='Off' || FluentBitHttpServer='On'
+    curl https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/quickstart/cwagent-fluent-bit-quickstart.yaml | sed 's/{{cluster_name}}/'${ClusterName}'/;s/{{region_name}}/'${RegionName}'/;s/{{http_server_toggle}}/"'${FluentBitHttpServer}'"/;s/{{http_server_port}}/"'${FluentBitHttpPort}'"/;s/{{read_from_head}}/"'${FluentBitReadFromHead}'"/;s/{{read_from_tail}}/"'${FluentBitReadFromTail}'"/' | kubectl apply -f - 	
+	
+	
+
+//FYI
+--gives config info
+    cat /var/lib/jenkins/.kube/config 
+--gives namespaces
+    kubectl get ns
+
+
+monitoring
+https://www.youtube.com/watch?v=8MLcbbfEL1U

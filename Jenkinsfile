@@ -31,7 +31,7 @@ pipeline {
                 }
             }
         }
-
+// check info in ECR push commands
         stage('Push Images to ECR') {
             steps {
                 script {
