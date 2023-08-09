@@ -6,6 +6,7 @@
 
 3.  Now Install all command line utilities ie
     aws-cli, kubectl, eksctl
+    
 4.  Now Switch to jenkins user 
 
 5.  Create ECR repo and Install docker in ubuntu  

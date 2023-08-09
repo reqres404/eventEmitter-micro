@@ -40,11 +40,17 @@
 
 (5)	Docker <------>
 		sudo apt install docker.io -y
+
 		sudo usermod -aG docker $USER	
+		
 		sudo usermod -a -G docker jenkins
+		
 		sudo service jenkins restart
+		
 		sudo systemctl daemon-reload
+
 		sudo service docker stop
+
 		sudo service docker start
 
 (6.1)	Swith to jenkins user
@@ -52,7 +58,6 @@
 
 (6.2)	Create EKS Cluster
 	//Creating Cluster:
-	sudo su - jenkins
 	eksctl create cluster --name caketrack-eks --region us-east-2 --nodegroup-name caketrack-nodes --node-type t3.small --managed --nodes 2
 	eksctl get cluster --name caketrack-eks --region us-east-2
 	
