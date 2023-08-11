@@ -58,8 +58,8 @@
 
 (6.2)	Create EKS Cluster
 	//Creating Cluster:
-	eksctl create cluster --name caketrack-eks --region us-east-2 --nodegroup-name caketrack-nodes --node-type t3.small --managed --nodes 2
-	eksctl get cluster --name caketrack-eks --region us-east-2
+	eksctl create cluster --name caketrack-ekscluster --region us-east-2 --nodegroup-name caketrack-nodes --node-type t3.small --managed --nodes 2
+	eksctl get cluster --name caketrack-ekscluster --region us-east-2
 	
 	kubectl config view --minify --flatten
 	kubectl config use-context <context-name>
@@ -91,3 +91,6 @@ aws eks update-kubeconfig --name my-eks-cluster
 
 monitoring
 https://www.youtube.com/watch?v=8MLcbbfEL1U
+
+//delete cluster
+eksctl delete cluster --name caketrack-ekscluster --region us-east-2
